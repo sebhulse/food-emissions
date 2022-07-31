@@ -18,10 +18,10 @@
   </header>
   <body>
     <div class="container-sm mb-3">
-      <h2>Results Summary</h2>
+      <h2>Summary</h2>
+      <div id="infoPlaceholder"></div>
       <p>
-        Great! The numbers have been crunched and you can find a breakdown
-        below.
+        <em>Please find a breakdown and data export options below.</em>
       </p>
       <h4>Trip Information</h4>
       <div id="tripInformationPlaceholder"></div>
@@ -35,7 +35,91 @@
       <div id="snacksPlaceholder"></div>
       <h4>Total Emissions</h4>
       <div id="totalEmissionsPlaceholder"></div>
-      <div id="infoPlaceholder"></div>
+      <table class="table table-bordered text-center" id="table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2"></th>
+            <th scope="col" colspan="8">Breakfast</th>
+            <th scope="col" colspan="8">Lunch</th>
+            <th scope="col" colspan="8">Evening Meal</th>
+            <th scope="col" colspan="8">Everything Else</th>
+          </tr>
+          <tr>
+            <th scope="col" colspan="2">Total Trip</th>
+            <th scope="col" colspan="2">Vegan</th>
+            <th scope="col" colspan="2">Vegetarian</th>
+            <th scope="col" colspan="2">Meat and Dairy</th>
+            <th scope="col" colspan="2">Total Breakfast</th>
+            <th scope="col" colspan="2">Vegan</th>
+            <th scope="col" colspan="2">Vegetarian</th>
+            <th scope="col" colspan="2">Meat and Dairy</th>
+            <th scope="col" colspan="2">Total Lunch</th>
+            <th scope="col" colspan="2">Vegan</th>
+            <th scope="col" colspan="2">Vegetarian</th>
+            <th scope="col" colspan="2">Meat and Dairy</th>
+            <th scope="col" colspan="2">Total Evening Meal</th>
+            <th scope="col" colspan="2">Vegan</th>
+            <th scope="col" colspan="2">Vegetarian</th>
+            <th scope="col" colspan="2">Meat and Dairy</th>
+            <th scope="col" colspan="2">Total Everything Else</th>
+          </tr>
+          <tr>
+            <th scope="col">Days</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+            <th scope="col">Number</th>
+            <th scope="col">Emissions (kgCO2e)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="tableBodyPlaceholder"></tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-outline-dark m-2">
+          Copy Table
+        </button>
+        <button type="button" class="btn btn-dark m-2">Copy Data Row</button>
+      </div>
+      <hr class="mt-4 mb-4" />
+      <h2>Additional data export options</h2>
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-dark m-3">
+          Download JSON Data
+        </button>
+        <button type="button" class="btn btn-dark m-3">
+          Download CSV Data
+        </button>
+      </div>
     </div>
   </body>
 </html>

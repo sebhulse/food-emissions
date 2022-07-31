@@ -264,7 +264,7 @@ const calculateEmissionsData = (valuesKey) => {
       },
     },
     {
-      meal: "Snacks",
+      meal: "Everything Else",
       placeholder: "snacks",
       vegan: {
         emissions: Number(veganSnackEmissions.toFixed(2)),
