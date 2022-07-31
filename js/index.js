@@ -9,9 +9,8 @@ SNACK_PROPORTION = Number(0.2);
 
 const submit = () => {
   const valuesKey = getAndCheckInputData();
-  let result;
   if (valuesKey) {
-    result = calculateEmissionsData(valuesKey);
+    calculateEmissionsData(valuesKey);
     window.location.href = "/results.html";
   }
 };
@@ -196,43 +195,104 @@ const calculateEmissionsData = (valuesKey) => {
       eveningTotalEmissions +
       snacksTotalEmissions
   );
-
-  const calculatedEmissionsData = {
+  const totalEmissionsData = {
     totalDays: values.totalDays,
     totalEmissions: +totalEmissions.toFixed(2),
     potentialTotalVeganEmissions: +(
       values.totalDays * VEGAN_EMISSIONS_DAILY_KG
     ).toFixed(2),
-    breakfasts: {
-      vegan: Number(veganBreakfastEmissions.toFixed(2)),
-      vegetarian: Number(vegetarianBreakfastEmissions.toFixed(2)),
-      meatAndDairy: Number(meatAndDairyBreakfastEmissions.toFixed(2)),
-      breakfastsTotalEmissions: Number(breakfastsTotalEmissions.toFixed(2)),
-    },
-    lunches: {
-      vegan: Number(veganLunchEmissions.toFixed(2)),
-      vegetarian: Number(vegetarianLunchEmissions.toFixed(2)),
-      meatAndDairy: Number(meatAndDairyLunchEmissions.toFixed(2)),
-      lunchesTotalEmissions: Number(lunchesTotalEmissions.toFixed(2)),
-    },
-    evening: {
-      vegan: Number(veganEveningEmissions.toFixed(2)),
-      vegetarian: Number(vegetarianEveningEmissions.toFixed(2)),
-      meatAndDairy: Number(meatAndDairyEveningEmissions.toFixed(2)),
-      eveningTotalEmissions: Number(eveningTotalEmissions.toFixed(2)),
-    },
-    snacks: {
-      vegan: Number(veganSnackEmissions.toFixed(2)),
-      vegetarian: Number(vegetarianSnackEmissions.toFixed(2)),
-      meatAndDairy: Number(meatAndDairySnackEmissions.toFixed(2)),
-      snacksTotalEmissions: Number(snacksTotalEmissions.toFixed(2)),
-    },
   };
+  const calculatedEmissionsData = [
+    {
+      meal: "Breakfasts",
+      placeholder: "breakfasts",
+      vegan: {
+        emissions: Number(veganBreakfastEmissions.toFixed(2)),
+        number: values.breakfasts.vegan,
+      },
+      vegetarian: {
+        emissions: Number(vegetarianBreakfastEmissions.toFixed(2)),
+        number: values.breakfasts.vegetarian,
+      },
+      meatAndDairy: {
+        emissions: Number(meatAndDairyBreakfastEmissions.toFixed(2)),
+        number: values.breakfasts.meatAndDairy,
+      },
+      totalEmissions: {
+        emissions: Number(breakfastsTotalEmissions.toFixed(2)),
+        number: values.totalDays,
+      },
+    },
+    {
+      meal: "Lunches",
+      placeholder: "lunches",
+      vegan: {
+        emissions: Number(veganLunchEmissions.toFixed(2)),
+        number: values.lunches.vegan,
+      },
+      vegetarian: {
+        emissions: Number(vegetarianLunchEmissions.toFixed(2)),
+        number: values.lunches.vegetarian,
+      },
+      meatAndDairy: {
+        emissions: Number(meatAndDairyLunchEmissions.toFixed(2)),
+        number: values.lunches.meatAndDairy,
+      },
+      totalEmissions: {
+        emissions: Number(lunchesTotalEmissions.toFixed(2)),
+        number: values.totalDays,
+      },
+    },
+    {
+      meal: "Evening Meals",
+      placeholder: "evening",
+      vegan: {
+        emissions: Number(veganEveningEmissions.toFixed(2)),
+        number: values.evening.vegan,
+      },
+      vegetarian: {
+        emissions: Number(vegetarianEveningEmissions.toFixed(2)),
+        number: values.evening.vegetarian,
+      },
+      meatAndDairy: {
+        emissions: Number(meatAndDairyEveningEmissions.toFixed(2)),
+        number: values.evening.meatAndDairy,
+      },
+      totalEmissions: {
+        emissions: Number(eveningTotalEmissions.toFixed(2)),
+        number: values.totalDays,
+      },
+    },
+    {
+      meal: "Snacks",
+      placeholder: "snacks",
+      vegan: {
+        emissions: Number(veganSnackEmissions.toFixed(2)),
+        number: values.snacks.vegan,
+      },
+      vegetarian: {
+        emissions: Number(vegetarianSnackEmissions.toFixed(2)),
+        number: values.snacks.vegetarian,
+      },
+      meatAndDairy: {
+        emissions: Number(meatAndDairySnackEmissions.toFixed(2)),
+        number: values.snacks.meatAndDairy,
+      },
+      totalEmissions: {
+        emissions: Number(snacksTotalEmissions.toFixed(2)),
+        number: values.totalDays,
+      },
+    },
+  ];
   sessionStorage.setItem(
     "calculatedEmissionsData",
     JSON.stringify(calculatedEmissionsData)
   );
-  return "calculatedEmissionsData";
+  sessionStorage.setItem(
+    "totalEmissionsData",
+    JSON.stringify(totalEmissionsData)
+  );
+  return ["calculatedEmissionsData", "totalEmissionsData"];
 };
 
 const insertWarningMessages = (
