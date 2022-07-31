@@ -1,8 +1,6 @@
 const results = () => {
   const data = displayEmissionsDataBreakdown();
-  displayEmissionsDataTable(data);
-  console.log("download emissions data");
-  console.log("submit emissions data to google sheet");
+  displayEmissionsTableData(data);
 };
 
 const displayEmissionsDataBreakdown = () => {
@@ -98,7 +96,7 @@ const displayEmissionsDataBreakdown = () => {
   return data;
 };
 
-const displayEmissionsDataTable = (data) => {
+const displayEmissionsTableData = (data) => {
   const tableBodyPlaceholder = document.getElementById(`tableBodyPlaceholder`);
   data.map((el) => {
     tableBodyPlaceholder.innerHTML += `<td>${el}</td>`;
@@ -118,7 +116,5 @@ const insertGenericEmissionsData = (message, placeholder) => {
 const downloadJsonEmissionsData = () => {};
 
 const downloadCsvEmissionsData = () => {};
-
-const submitEmissionsDataToGoogleSheet = () => {};
 
 results();
