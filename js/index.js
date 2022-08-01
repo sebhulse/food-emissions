@@ -15,6 +15,10 @@ const submit = () => {
   }
 };
 
+function changeLiveDuration(id, duration) {
+  document.getElementById(id).innerHTML = duration;
+}
+
 const getAndCheckInputData = () => {
   const totalDays = Number(document.getElementById("trip-info").value);
 
@@ -303,19 +307,23 @@ const insertWarningMessages = (
 ) => {
   let warningPlaceholder = document.getElementById("warningPlaceholder");
   let warningSubheadingPlaceholder = document.getElementById(sectionId);
-  warningPlaceholder.innerHTML += [
-    `<div class="alert alert-danger" role="alert">`,
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = [
+    `<div class="alert alert-danger mb-5" role="alert">`,
     `<h4>Oops, please check your numbers</h4>`,
     `Please ensure that your total <strong><em>${sectionText}</em></strong> days (all diets) add up to <strong>${totalDays}</strong> (your 'Total days of trip'). You've currently allocated <strong>${currentDays} of ${totalDays}</strong> total days.`,
     `<hr>`,
     `<p class="mb-0"><strong>Please note:</strong> If your eating patterns do not follow this structure, please distribute your 'Days' to each meal time to best reflect how you ate and drank on each day (assuming one <em>Breakfast</em>, <em>Lunch</em>, <em>Evening Meal</em> and <em>Everything Else</em> for each of the days on your trip). Please see the methodology for more information.</p>`,
     `</div>`,
   ].join("");
-  warningSubheadingPlaceholder.innerHTML = [
+  const wrapperSubheading = document.createElement("div");
+  wrapperSubheading.innerHTML = [
     `<div class="alert alert-warning" role="alert">`,
     `Please ensure that your total <strong><em>${sectionText}</em></strong> days (all diets) add up to <strong>${totalDays}</strong> (your 'Total days of trip'). You've currently allocated <strong>${currentDays} of ${totalDays}</strong> total days.`,
     `</div>`,
   ].join("");
+  warningPlaceholder.innerHTML = wrapper.innerHTML;
+  warningSubheadingPlaceholder.innerHTML = wrapperSubheading.innerHTML;
   warningPlaceholder.focus();
   window.location.href = "/#warningPlaceholder";
 };

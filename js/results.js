@@ -83,7 +83,7 @@ const displayEmissionsDataBreakdown = () => {
   } else {
     insertGenericEmissionsData(
       `<div class="alert alert-info mt-3" role="alert">
-      <strong>Thank you</strong> for submitting your data. By choosing Vegan 🌱 next time, you could reduce your emissions by approximately <strong>${Math.round(
+      <strong>Thank you</strong> for submitting your data. By choosing Vegan 🌱 next time, you could reduce your emissions by <strong>${Math.round(
         ((totalEmissionsData.totalEmissions -
           totalEmissionsData.potentialTotalVeganEmissions) /
           totalEmissionsData.totalEmissions) *

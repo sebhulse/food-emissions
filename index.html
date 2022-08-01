@@ -11,202 +11,260 @@
     />
     <script src="js/index.js"></script>
   </head>
+  <style>
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: #dee2e6;
+      outline: none;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #212529;
+      cursor: pointer;
+    }
+    .slider::-moz-range-thumb {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #212529;
+      cursor: pointer;
+    }
+  </style>
   <header>
     <div class="text-center p-4">
       <h1 class="display-2">UK Food Emissions</h1>
     </div>
   </header>
   <body>
-    <div class="container-sm mb-3">
-      <form class="needs-validation" id="form" novalidate>
+    <div class="d-flex justify-content-center m-3">
+      <div class="col-9">
         <h2>Trip Information</h2>
-        <div class="input-group mb-3 has-validation">
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="trip-info"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="trip-info">Total days of trip</label>
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
+        <div class="d-flex justify-content-between align-items-end mt-3">
+          <label for="trip-info" class="form-label m-0"
+            >Total days of trip</label
+          >
+          <label class="badge text-bg-secondary p-2 ms-2" id="trip-info-badge"
+            >0</label
+          >
         </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="trip-info"
+          oninput="changeLiveDuration('trip-info-badge', this.value)"
+        />
+        <hr class="mb-5" />
         <h2>Breakfasts</h2>
         <div id="breakfastsWarningPlaceholder"></div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold">Vegan</label>
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegan-breakfasts"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegan-breakfasts">Days I had Vegan Breakfasts</label>
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegetarian-breakfasts" class="form-label fw-bold"
-            >Vegetarian</label
+        <h6 class="fw-bold mt-3">Vegan</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegan-breakfasts" class="form-label m-0"
+            >Days I had Vegan Breakfasts</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegetarian-breakfasts"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegetarian-breakfasts"
-              >Days I had Vegetarian Breakfasts</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="m-and-d-breakfasts" class="form-label fw-bold"
-            >Meat & Dairy</label
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegan-breakfasts-badge"
+            >0</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="m-and-d-breakfasts"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="m-and-d-breakfasts"
-              >Days I had Meat & Dairy Breakfasts</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
         </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegan-breakfasts"
+          oninput="changeLiveDuration('vegan-breakfasts-badge', this.value)"
+        />
+        <h6 class="fw-bold">Vegetarian</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegetarian-breakfasts" class="form-label m-0"
+            >Days I had Vegetarian Breakfasts</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegetarian-breakfasts-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegetarian-breakfasts"
+          oninput="changeLiveDuration('vegetarian-breakfasts-badge', this.value)"
+        />
+        <h6 class="fw-bold">Meat & Dairy</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="m-and-d-breakfasts" class="form-label m-0"
+            >Days I had Meat & Dairy Breakfasts</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="m-and-d-breakfasts-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="m-and-d-breakfasts"
+          oninput="changeLiveDuration('m-and-d-breakfasts-badge', this.value)"
+        />
+        <hr class="mb-5" />
         <h2>Lunches</h2>
         <div id="lunchesWarningPlaceholder"></div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold">Vegan</label>
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegan-lunches"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegan-lunches">Days I had Vegan Lunches</label>
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold"
-            >Vegetarian</label
+        <h6 class="fw-bold mt-3">Vegan</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegan-lunches" class="form-label m-0"
+            >Days I had Vegan Lunches</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegetarian-lunches"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegetarian-lunches"
-              >Days I had Vegetarian Lunches</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold"
-            >Meat & Dairy</label
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegan-lunches-badge"
+            >0</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="m-and-d-lunches"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="m-and-d-lunches">Days I had Meat & Dairy Lunches</label>
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
         </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegan-lunches"
+          oninput="changeLiveDuration('vegan-lunches-badge', this.value)"
+        />
+        <h6 class="fw-bold">Vegetarian</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegetarian-lunches" class="form-label m-0"
+            >Days I had Vegetarian Lunches</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegetarian-lunches-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegetarian-lunches"
+          oninput="changeLiveDuration('vegetarian-lunches-badge', this.value)"
+        />
+        <h6 class="fw-bold">Meat & Dairy</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="m-and-d-lunches" class="form-label m-0"
+            >Days I had Meat & Dairy Lunches</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="m-and-d-lunches-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="m-and-d-lunches"
+          oninput="changeLiveDuration('m-and-d-lunches-badge', this.value)"
+        />
+        <hr class="mb-5" />
+
         <h2>Evening Meals</h2>
         <div id="eveningMealsWarningPlaceholder"></div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold">Vegan</label>
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegan-evening"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegan-evening">Days I had Vegan Evening Meals</label>
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold"
-            >Vegetarian</label
+        <h6 class="fw-bold mt-3">Vegan</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegan-evening" class="form-label m-0"
+            >Days I had Vegan Evening Meals</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegetarian-evening"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegetarian-evening"
-              >Days I had Vegetarian Evening Meals</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold"
-            >Meat & Dairy</label
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegan-evening-badge"
+            >0</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="m-and-d-evening"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="m-and-d-evening"
-              >Days I had Meat & Dairy Evening Meals</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
         </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegan-evening"
+          oninput="changeLiveDuration('vegan-evening-badge', this.value)"
+        />
+        <h6 class="fw-bold">Vegetarian</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegetarian-evening" class="form-label m-0"
+            >Days I had Vegetarian Evening Meals</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegetarian-evening-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegetarian-evening"
+          oninput="changeLiveDuration('vegetarian-evening-badge', this.value)"
+        />
+        <h6 class="fw-bold">Meat & Dairy</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="m-and-d-evening" class="form-label m-0"
+            >Days I had Meat & Dairy Evening Meals</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="m-and-d-evening-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="m-and-d-evening"
+          oninput="changeLiveDuration('m-and-d-evening-badge', this.value)"
+        />
+        <hr class="mb-5" />
+
         <h2>Everything Else</h2>
         <div id="snacksWarningPlaceholder"></div>
         <div class="mb-2">
@@ -217,81 +275,82 @@
             ></span
           >
         </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold">Vegan</label>
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegan-snacks"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegan-snacks"
-              >Days I had Mostly Vegan Snacks (Food & Drink)</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold"
-            >Vegetarian</label
+        <h6 class="fw-bold mt-3">Vegan</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegan-snacks" class="form-label m-0"
+            >Days I had Vegan Snacks (Food & Drink)</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="vegetarian-snacks"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="vegetarian-snacks"
-              >Days I had Mostly Vegetarian Snacks (Food & Drink)</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="vegan-breakfasts" class="form-label fw-bold"
-            >Meat & Dairy</label
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegan-snacks-badge"
+            >0</label
           >
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="m-and-d-snacks"
-              value="0"
-              min="0"
-              max="100"
-              required
-            />
-            <label for="m-and-d-snacks"
-              >Days I had Mostly Meat & Dairy Snacks (Food & Drink)</label
-            >
-            <div class="invalid-feedback">Please enter 0 to 100 days.</div>
-          </div>
         </div>
-        <div id="warningPlaceholder"></div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegan-snacks"
+          oninput="changeLiveDuration('vegan-snacks-badge', this.value)"
+        />
+        <h6 class="fw-bold">Vegetarian</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="vegetarian-snacks" class="form-label m-0"
+            >Days I had Vegetarian Snacks (Food & Drink)</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="vegetarian-snacks-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="vegetarian-snacks"
+          oninput="changeLiveDuration('vegetarian-snacks-badge', this.value)"
+        />
+        <h6 class="fw-bold">Meat & Dairy</h6>
+        <div class="d-flex justify-content-between align-items-end">
+          <label for="m-and-d-snacks" class="form-label m-0"
+            >Days I had Meat & Dairy Snacks (Food & Drink)</label
+          >
+          <label
+            class="badge text-bg-secondary p-2 ms-2"
+            id="m-and-d-snacks-badge"
+            >0</label
+          >
+        </div>
+        <input
+          type="range"
+          class="slider mb-5 mt-4"
+          min="0"
+          max="21"
+          step="1"
+          value="0"
+          id="m-and-d-snacks"
+          oninput="changeLiveDuration('m-and-d-snacks-badge', this.value)"
+        />
+        <hr class="mb-5" />
 
+        <div id="warningPlaceholder"></div>
         <div class="d-flex justify-content-center">
-          <button type="submit" class="btn btn-dark btn-lg w-50">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-dark btn-lg w-50"
+            onclick="submit()"
+          >
+            Submit
+          </button>
         </div>
-      </form>
+      </div>
     </div>
-    <script>
-      const form = document.getElementById("form");
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        form.classList.add("was-validated");
-        if (form.checkValidity()) {
-          submit();
-        }
-      });
-    </script>
   </body>
 </html>

@@ -35,75 +35,78 @@
       <div id="snacksPlaceholder"></div>
       <h4>Total Emissions</h4>
       <div id="totalEmissionsPlaceholder"></div>
-      <table class="table table-bordered text-center" id="table">
-        <thead>
-          <tr>
-            <th scope="col" colspan="2"></th>
-            <th scope="col" colspan="8">Breakfast</th>
-            <th scope="col" colspan="8">Lunch</th>
-            <th scope="col" colspan="8">Evening Meal</th>
-            <th scope="col" colspan="8">Everything Else</th>
-          </tr>
-          <tr>
-            <th scope="col" colspan="2">Total Trip</th>
-            <th scope="col" colspan="2">Vegan</th>
-            <th scope="col" colspan="2">Vegetarian</th>
-            <th scope="col" colspan="2">Meat and Dairy</th>
-            <th scope="col" colspan="2">Total Breakfast</th>
-            <th scope="col" colspan="2">Vegan</th>
-            <th scope="col" colspan="2">Vegetarian</th>
-            <th scope="col" colspan="2">Meat and Dairy</th>
-            <th scope="col" colspan="2">Total Lunch</th>
-            <th scope="col" colspan="2">Vegan</th>
-            <th scope="col" colspan="2">Vegetarian</th>
-            <th scope="col" colspan="2">Meat and Dairy</th>
-            <th scope="col" colspan="2">Total Evening Meal</th>
-            <th scope="col" colspan="2">Vegan</th>
-            <th scope="col" colspan="2">Vegetarian</th>
-            <th scope="col" colspan="2">Meat and Dairy</th>
-            <th scope="col" colspan="2">Total Everything Else</th>
-          </tr>
-          <tr>
-            <th scope="col">Days</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-            <th scope="col">Number</th>
-            <th scope="col">Emissions (kgCO2e)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="tableBodyPlaceholder"></tr>
-        </tbody>
-      </table>
+      <div class="overflow-auto">
+        <table class="table table-bordered text-center" id="table">
+          <thead>
+            <tr>
+              <th scope="col" colspan="2"></th>
+              <th scope="col" colspan="8">Breakfast</th>
+              <th scope="col" colspan="8">Lunch</th>
+              <th scope="col" colspan="8">Evening Meal</th>
+              <th scope="col" colspan="8">Everything Else</th>
+            </tr>
+            <tr>
+              <th scope="col" colspan="2">Total Trip</th>
+              <th scope="col" colspan="2">Vegan</th>
+              <th scope="col" colspan="2">Vegetarian</th>
+              <th scope="col" colspan="2">Meat and Dairy</th>
+              <th scope="col" colspan="2">Total Breakfast</th>
+              <th scope="col" colspan="2">Vegan</th>
+              <th scope="col" colspan="2">Vegetarian</th>
+              <th scope="col" colspan="2">Meat and Dairy</th>
+              <th scope="col" colspan="2">Total Lunch</th>
+              <th scope="col" colspan="2">Vegan</th>
+              <th scope="col" colspan="2">Vegetarian</th>
+              <th scope="col" colspan="2">Meat and Dairy</th>
+              <th scope="col" colspan="2">Total Evening Meal</th>
+              <th scope="col" colspan="2">Vegan</th>
+              <th scope="col" colspan="2">Vegetarian</th>
+              <th scope="col" colspan="2">Meat and Dairy</th>
+              <th scope="col" colspan="2">Total Everything Else</th>
+            </tr>
+            <tr>
+              <th scope="col">Days</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Number</th>
+              <th scope="col">Emissions (kgCO2e)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="tableBodyPlaceholder"></tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-outline-dark m-2">
           Copy Table
