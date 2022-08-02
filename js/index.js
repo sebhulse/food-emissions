@@ -15,12 +15,13 @@ const submit = () => {
   }
 };
 
-function changeLiveDuration(id, duration) {
+const changeLiveDuration = (id, duration) => {
   document.getElementById(id).innerHTML = duration;
-}
+};
 
 const getAndCheckInputData = () => {
   const totalDays = Number(document.getElementById("trip-info").value);
+  const tripStart = document.getElementById("trip-start").value;
 
   const veganBreakfasts = Number(
     document.getElementById("vegan-breakfasts").value
@@ -61,9 +62,12 @@ const getAndCheckInputData = () => {
   const lunchesDays = veganLunches + vegetarianLunches + meatAndDairyLunches;
   const eveningDays = veganEvening + vegetarianEvening + meatAndDairyEvening;
   const snacksDays = veganSnacks + vegetarianSnacks + meatAndDairySnacks;
-
+  if (totalDays === 0) {
+    insertTotalDaysWarningMessages("warningPlaceholder");
+    return null;
+  }
   if (totalDays !== breakfastsDays) {
-    insertWarningMessages(
+    insertNumberWarningMessages(
       "Breakfasts",
       "breakfastsWarningPlaceholder",
       totalDays,
@@ -71,7 +75,7 @@ const getAndCheckInputData = () => {
     );
     return null;
   } else if (totalDays !== lunchesDays) {
-    insertWarningMessages(
+    insertNumberWarningMessages(
       "Lunches",
       "lunchesWarningPlaceholder",
       totalDays,
@@ -79,7 +83,7 @@ const getAndCheckInputData = () => {
     );
     return null;
   } else if (totalDays !== eveningDays) {
-    insertWarningMessages(
+    insertNumberWarningMessages(
       "Evening Meals",
       "eveningMealsWarningPlaceholder",
       totalDays,
@@ -87,7 +91,7 @@ const getAndCheckInputData = () => {
     );
     return null;
   } else if (totalDays !== snacksDays) {
-    insertWarningMessages(
+    insertNumberWarningMessages(
       "Everything Else",
       "snacksWarningPlaceholder",
       totalDays,
@@ -97,6 +101,7 @@ const getAndCheckInputData = () => {
   } else {
     const inputData = {
       totalDays: totalDays,
+      tripStart: tripStart,
       breakfasts: {
         vegan: veganBreakfasts,
         vegetarian: vegetarianBreakfasts,
@@ -200,6 +205,7 @@ const calculateEmissionsData = (valuesKey) => {
       snacksTotalEmissions
   );
   const totalEmissionsData = {
+    tripStart: values.tripStart,
     totalDays: values.totalDays,
     totalEmissions: +totalEmissions.toFixed(2),
     potentialTotalVeganEmissions: +(
@@ -299,7 +305,7 @@ const calculateEmissionsData = (valuesKey) => {
   return ["calculatedEmissionsData", "totalEmissionsData"];
 };
 
-const insertWarningMessages = (
+const insertNumberWarningMessages = (
   sectionText,
   sectionId,
   totalDays,
@@ -307,23 +313,30 @@ const insertWarningMessages = (
 ) => {
   let warningPlaceholder = document.getElementById("warningPlaceholder");
   let warningSubheadingPlaceholder = document.getElementById(sectionId);
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML = [
-    `<div class="alert alert-danger mb-5" role="alert">`,
+  warningPlaceholder.innerHTML = [
+    `<div class="alert alert-warning mb-5" role="alert">`,
     `<h4>Oops, please check your numbers</h4>`,
     `Please ensure that your total <strong><em>${sectionText}</em></strong> days (all diets) add up to <strong>${totalDays}</strong> (your 'Total days of trip'). You've currently allocated <strong>${currentDays} of ${totalDays}</strong> total days.`,
     `<hr>`,
     `<p class="mb-0"><strong>Please note:</strong> If your eating patterns do not follow this structure, please distribute your 'Days' to each meal time to best reflect how you ate and drank on each day (assuming one <em>Breakfast</em>, <em>Lunch</em>, <em>Evening Meal</em> and <em>Everything Else</em> for each of the days on your trip). Please see the methodology for more information.</p>`,
     `</div>`,
   ].join("");
-  const wrapperSubheading = document.createElement("div");
-  wrapperSubheading.innerHTML = [
+  warningSubheadingPlaceholder.innerHTML = [
     `<div class="alert alert-warning" role="alert">`,
     `Please ensure that your total <strong><em>${sectionText}</em></strong> days (all diets) add up to <strong>${totalDays}</strong> (your 'Total days of trip'). You've currently allocated <strong>${currentDays} of ${totalDays}</strong> total days.`,
     `</div>`,
   ].join("");
-  warningPlaceholder.innerHTML = wrapper.innerHTML;
-  warningSubheadingPlaceholder.innerHTML = wrapperSubheading.innerHTML;
   warningPlaceholder.focus();
   window.location.href = "/#warningPlaceholder";
+};
+
+const insertTotalDaysWarningMessages = () => {
+  // const warningPlaceholder = document.getElementById("warningPlaceholder");
+  // warningPlaceholder.innerHTML = `<div class="alert alert-warning mb-5" role="alert"><h4>Oops, please check your days</h4>Please ensure that your <strong>Total days of trip</strong> are greater than <strong>zero</strong>.</div>`;
+  const sectionPlaceholder = document.getElementById(
+    "totalDaysWarningPlaceholder"
+  );
+  sectionPlaceholder.innerHTML = `<div class="alert alert-warning" role="alert">Please ensure that your <strong>Total days of trip</strong> are greater than <strong>0</strong>.</div>`;
+  sectionPlaceholder.focus();
+  window.location.href = "/#totalDaysWarningPlaceholder";
 };
