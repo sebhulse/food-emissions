@@ -1,6 +1,10 @@
 const results = () => {
-  const data = displayEmissionsDataBreakdown();
-  displayEmissionsTableData(data);
+  try {
+    const data = displayEmissionsDataBreakdown();
+    displayEmissionsTableData(data);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const displayEmissionsDataBreakdown = () => {
@@ -11,11 +15,20 @@ const displayEmissionsDataBreakdown = () => {
     sessionStorage.getItem("totalEmissionsData")
   );
   let data = [];
-  data.push(
-    totalEmissionsData.tripStart,
-    totalEmissionsData.totalDays,
-    totalEmissionsData.totalEmissions
-  );
+  try {
+    data.push(
+      totalEmissionsData.tripStart,
+      totalEmissionsData.totalDays,
+      totalEmissionsData.totalEmissions
+    );
+  } catch {
+    insertElement(
+      `<div class="alert alert-warning mt-3" role="alert">
+      <strong>Oops, no data was found!</strong> Please <a href="/" class="alert-link">enter some data</a>.</div>`,
+      "infoPlaceholder"
+    );
+  }
+
   calculatedEmissionsData.map(
     ({
       meal,
@@ -61,17 +74,25 @@ const displayEmissionsDataBreakdown = () => {
         );
       totalEmissions &&
         insertElement(
-          `<p>Total ${meal} emissions: ${totalEmissions.emissions} kgCO2e</p>`,
+          `<p class="mt-3"><strong>Total ${meal} emissions</strong>: <strong>${totalEmissions.emissions}</strong> kgCO2e</p>`,
           `${placeholder}Placeholder`
         );
     }
   );
+  const tripStartDateString = new Date(
+    totalEmissionsData.tripStart
+  ).toDateString();
+  totalEmissionsData.tripStart &&
+    insertElement(
+      `<tr><td>Trip start:</td><td>${tripStartDateString}</td></tr>`,
+      "tripInformationPlaceholder"
+    );
   insertElement(
-    `<p>Trip length: ${totalEmissionsData.totalDays} days</p>`,
+    `<tr><td>Total days:</td><td>${totalEmissionsData.totalDays}</td></tr>`,
     "tripInformationPlaceholder"
   );
   insertElement(
-    `<p>Total emissions: ${totalEmissionsData.totalEmissions} kgCO2e</p>`,
+    `<p><strong>Total emissions</strong>: <strong>${totalEmissionsData.totalEmissions}</strong> kgCO2e</p>`,
     "totalEmissionsPlaceholder"
   );
   if (
@@ -110,11 +131,16 @@ const displayEmissionsTableData = (data) => {
 
 const insertEmissionsData = (section, sectionName, number, diet, emissions) => {
   const sectionPlaceholder = document.getElementById(`${section}Placeholder`);
-  sectionPlaceholder.innerHTML += `<p>${number}x ${diet} ${sectionName} = ${emissions} kgCO2e</p>`;
+  sectionPlaceholder.innerHTML += `<tr>
+  <td>${number}</td>
+  <td>${diet}</td>
+  <td>${emissions}</td>
+</tr>`;
 };
 
 const insertElement = (message, placeholder) => {
-  const sectionPlaceholder = document.getElementById(`${placeholder}`);
+  console.log(placeholder);
+  const sectionPlaceholder = document.getElementById(placeholder);
   sectionPlaceholder.innerHTML += `${message}`;
 };
 
