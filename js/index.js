@@ -331,8 +331,6 @@ const insertNumberWarningMessages = (
 };
 
 const insertTotalDaysWarningMessages = () => {
-  // const warningPlaceholder = document.getElementById("warningPlaceholder");
-  // warningPlaceholder.innerHTML = `<div class="alert alert-warning mb-5" role="alert"><h4>Oops, please check your days</h4>Please ensure that your <strong>Total days of trip</strong> are greater than <strong>zero</strong>.</div>`;
   const sectionPlaceholder = document.getElementById(
     "totalDaysWarningPlaceholder"
   );
