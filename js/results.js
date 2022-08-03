@@ -75,7 +75,7 @@ const displayEmissionsDataBreakdown = () => {
       totalEmissions &&
         insertElement(
           `<p class="mt-3"><strong>Total ${meal} emissions</strong>: <strong>${totalEmissions.emissions}</strong> kgCO2e</p>`,
-          `${placeholder}Placeholder`
+          `${placeholder}TotalPlaceholder`
         );
     }
   );
