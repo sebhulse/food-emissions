@@ -11,7 +11,11 @@ const displayEmissionsDataBreakdown = () => {
     sessionStorage.getItem("totalEmissionsData")
   );
   let data = [];
-  data.push(totalEmissionsData.totalDays, totalEmissionsData.totalEmissions);
+  data.push(
+    totalEmissionsData.tripStart,
+    totalEmissionsData.totalDays,
+    totalEmissionsData.totalEmissions
+  );
   calculatedEmissionsData.map(
     ({
       meal,
