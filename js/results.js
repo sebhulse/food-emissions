@@ -2,9 +2,7 @@ const results = () => {
   try {
     const data = displayEmissionsDataBreakdown();
     displayEmissionsTableData(data);
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };
 
 const displayEmissionsDataBreakdown = () => {
@@ -139,7 +137,6 @@ const insertEmissionsData = (section, sectionName, number, diet, emissions) => {
 };
 
 const insertElement = (message, placeholder) => {
-  console.log(placeholder);
   const sectionPlaceholder = document.getElementById(placeholder);
   sectionPlaceholder.innerHTML += `${message}`;
 };
