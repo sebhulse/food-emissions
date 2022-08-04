@@ -1,3 +1,6 @@
+DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/data";
+DATA_AGGREGATION_TOOL = "foodemissions.uk";
+
 const results = () => {
   try {
     const data = displayEmissionsDataBreakdown();
@@ -78,6 +81,11 @@ const displayEmissionsDataBreakdown = () => {
           `${placeholder}TotalPlaceholder`
         );
     }
+  );
+  data.push(
+    new Date().toISOString().split("T")[0],
+    DATA_METHODOLOGY,
+    DATA_AGGREGATION_TOOL
   );
   const tripStartDateString = new Date(
     totalEmissionsData.tripStart

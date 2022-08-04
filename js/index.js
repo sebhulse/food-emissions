@@ -45,6 +45,9 @@ const checkAndUpdateBadgeValue = (section) => {
   totalsMatch
     ? (badge.className = "badge bg-success p-2 ms-2 fs-6")
     : (badge.className = "badge bg-warning p-2 ms-2 fs-6");
+  if (totalDaysValue === 0) {
+    badge.className = "badge bg-warning p-2 ms-2 fs-6";
+  }
   badge.innerHTML = `${sectionTotal} / ${totalDaysValue}`;
 };
 
