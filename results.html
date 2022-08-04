@@ -220,7 +220,10 @@
         </div>
       </div>
       <div class="overflow-auto">
-        <table class="table table-bordered text-center" id="table">
+        <table
+          class="table table-bordered border-secondary text-center"
+          id="table"
+        >
           <thead>
             <tr>
               <th scope="col" colspan="3"></th>
@@ -251,9 +254,9 @@
               <th scope="col" colspan="3">Data Information</th>
             </tr>
             <tr>
-              <th scope="col">Trip Start Date</th>
-              <th scope="col">Days</th>
-              <th scope="col">Emissions (kgCO2e)</th>
+              <th scope="col">Start Date (ISO)</th>
+              <th scope="col">Total Days</th>
+              <th scope="col">Total Emissions (kgCO2e)</th>
               <th scope="col">Number</th>
               <th scope="col">Emissions (kgCO2e)</th>
               <th scope="col">Number</th>
@@ -301,12 +304,19 @@
         <button
           type="button"
           class="btn btn-outline-dark m-2"
-          onclick="copyTableData()"
+          onclick="copyTableData(true, 'table', 'copyEntireTable')"
           id="copyEntireTable"
         >
           Copy Entire Table
         </button>
-        <button type="button" class="btn btn-dark m-2">Copy Data Row</button>
+        <button
+          type="button"
+          class="btn btn-dark m-2"
+          onclick="copyTableData(false, 'tableBody', 'copyDataRow')"
+          id="copyDataRow"
+        >
+          Copy Data Row
+        </button>
       </div>
       <hr class="mt-4 mb-4" />
       <h2>Additional data export options</h2>

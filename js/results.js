@@ -1,5 +1,7 @@
-DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/data";
-DATA_AGGREGATION_TOOL = "foodemissions.uk";
+const DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/data";
+const DATA_AGGREGATION_TOOL = "foodemissions.uk";
+
+let htmlTableDataRows = "";
 
 const results = () => {
   try {
@@ -54,7 +56,6 @@ const displayEmissionsDataBreakdown = () => {
       vegan.number &&
         insertEmissionsData(
           placeholder,
-          meal,
           vegan.number,
           "Vegan",
           vegan.emissions
@@ -62,7 +63,6 @@ const displayEmissionsDataBreakdown = () => {
       vegetarian.number &&
         insertEmissionsData(
           placeholder,
-          meal,
           vegetarian.number,
           "Vegetarian",
           vegetarian.emissions
@@ -70,7 +70,6 @@ const displayEmissionsDataBreakdown = () => {
       meatAndDairy.number &&
         insertEmissionsData(
           placeholder,
-          meal,
           meatAndDairy.number,
           "Meat & Dairy",
           meatAndDairy.emissions
@@ -141,7 +140,7 @@ const displayEmissionsDataBreakdown = () => {
     );
     insertElement(
       `<div class="alert alert-info mt-3" role="alert">
-      <strong>Thank you</strong> for submitting your data. By choosing Vegan 🌱 next time, you could reduce your emissions by <strong>${emissionsReductionPercent}%</strong>!
+      <strong>Thank you</strong> for entering your data. By choosing Vegan 🌱 next time, you could reduce your emissions by <strong>${emissionsReductionPercent}%</strong>!
     </div>`,
       "infoPlaceholder"
     );
@@ -153,16 +152,13 @@ const displayEmissionsTableData = (data) => {
   const tableBodyPlaceholder = document.getElementById(`tableBodyPlaceholder`);
   data.map((el) => {
     tableBodyPlaceholder.innerHTML += `<td>${el}</td>`;
+    htmlTableDataRows += `<td>${el}</td>`;
   });
 };
 
-const insertEmissionsData = (section, sectionName, number, diet, emissions) => {
+const insertEmissionsData = (section, number, diet, emissions) => {
   const sectionPlaceholder = document.getElementById(`${section}Placeholder`);
-  sectionPlaceholder.innerHTML += `<tr>
-  <td>${number}</td>
-  <td>${diet}</td>
-  <td>${emissions}</td>
-</tr>`;
+  sectionPlaceholder.innerHTML += `<tr><td>${number}</td><td>${diet}</td><td>${emissions}</td></tr>`;
 };
 
 const insertElement = (message, placeholder) => {
@@ -170,44 +166,39 @@ const insertElement = (message, placeholder) => {
   sectionPlaceholder.innerHTML += `${message}`;
 };
 
-const copyTableData = () => {
-  const tableElement = document.getElementById("table");
-  const blob = new Blob([tableElement.outerHTML], { type: "text/html" });
-  const tableHtml = new ClipboardItem({ "text/html": blob });
+const copyTableData = (isEntireTable, elementId, buttonId) => {
+  let blob;
+  if (isEntireTable) {
+    const tableElement = document.getElementById(elementId);
+    blob = new Blob([tableElement.outerHTML], { type: "text/html" });
+  } else {
+    blob = new Blob(
+      [`<table><tbody><tr>${htmlTableDataRows}</tr></tbody></table>`],
+      { type: "text/html" }
+    );
+  }
+  const tableHtml = new ClipboardItem({ [blob.type]: blob });
   navigator.clipboard.write([tableHtml]).then(
     () => {
-      setButtonStyle(
-        "Copied to Clipboard!",
-        "Copy Entire Table",
-        true,
-        "copyEntireTable"
-      );
+      setButtonStyle("Copied to Clipboard!", true, buttonId);
     },
     () => {
-      setButtonStyle(
-        "Copy failed",
-        "Copy Entire Table",
-        false,
-        "copyEntireTable"
-      );
+      setButtonStyle("Copy failed", false, buttonId);
     }
   );
 };
 
-const setButtonStyle = (
-  buttonText,
-  buttonTextOriginal,
-  isSuccess,
-  elementId
-) => {
-  const button = document.getElementById("copyEntireTable");
+const setButtonStyle = (buttonText, isSuccess, elementId) => {
+  const button = document.getElementById(elementId);
+  const previousCopy = button.innerHTML;
+  const previousClass = button.className;
   button.innerHTML = buttonText;
   isSuccess
     ? (button.className = "btn btn-outline-success m-2")
     : (button.className = "btn btn-outline-danger m-2");
   setInterval(() => {
-    button.innerHTML = buttonTextOriginal;
-    button.className = "btn btn-outline-dark m-2";
+    button.innerHTML = previousCopy;
+    button.className = previousClass;
   }, 2000);
 };
 
