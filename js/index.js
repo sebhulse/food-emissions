@@ -37,18 +37,41 @@ const checkAndUpdateBadgeValue = (section) => {
   const meatAndDairyRangeValue = Number(
     document.getElementById(`m-and-d-${section}`).value
   );
-  const badge = document.getElementById(`${section}-badge`);
+  const sectionBadge = document.getElementById(`${section}-badge`);
 
   const sectionTotal =
     veganRangeValue + vegetarianRangeValue + meatAndDairyRangeValue;
   const totalsMatch = Boolean(sectionTotal === totalDaysValue);
-  totalsMatch
-    ? (badge.className = "badge bg-success p-2 ms-2 fs-6")
-    : (badge.className = "badge bg-warning p-2 ms-2 fs-6");
-  if (totalDaysValue === 0) {
-    badge.className = "badge bg-warning p-2 ms-2 fs-6";
+  if (totalsMatch) {
+    sectionBadge.className = "badge bg-success p-2 ms-2 fs-6";
+    updateRangeBadges(section, true);
+  } else if (totalDaysValue === 0) {
+    sectionBadge.className = "badge bg-warning p-2 ms-2 fs-6";
+    updateRangeBadges(section, false);
+  } else {
+    sectionBadge.className = "badge bg-warning p-2 ms-2 fs-6";
+    updateRangeBadges(section, false);
   }
-  badge.innerHTML = `${sectionTotal} / ${totalDaysValue}`;
+  sectionBadge.innerHTML = `${sectionTotal} / ${totalDaysValue}`;
+};
+
+const updateRangeBadges = (section, status) => {
+  const veganRangeBadge = document.getElementById(`vegan-${section}-badge`);
+  const vegetarianRangeBadge = document.getElementById(
+    `vegetarian-${section}-badge`
+  );
+  const meatAndDairyRangeBadge = document.getElementById(
+    `m-and-d-${section}-badge`
+  );
+  if (status) {
+    veganRangeBadge.className = "badge bg-success p-2 ms-2 fs-6";
+    vegetarianRangeBadge.className = "badge bg-success p-2 ms-2 fs-6";
+    meatAndDairyRangeBadge.className = "badge bg-success p-2 ms-2 fs-6";
+  } else {
+    veganRangeBadge.className = "badge bg-warning p-2 ms-2 fs-6";
+    vegetarianRangeBadge.className = "badge bg-warning p-2 ms-2 fs-6";
+    meatAndDairyRangeBadge.className = "badge bg-warning p-2 ms-2 fs-6";
+  }
 };
 
 const getAndCheckInputData = () => {
