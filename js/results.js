@@ -127,7 +127,7 @@ const displayEmissionsDataBreakdown = () => {
   ) {
     insertElement(
       `<div class="alert alert-success mt-3" role="alert">
-      <strong>Nice one!</strong> Since you ate and drank 100% Vegan 🌱, your food and drink emissions are <strong>as low as they can be</strong> using this methodology.
+      <strong>Nice one!</strong> Since you went 100% Vegan 🌱, your food and drink emissions are <strong>as low as they can be</strong> using this methodology.
     </div>`,
       "infoPlaceholder"
     );
