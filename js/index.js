@@ -15,8 +15,37 @@ const submit = () => {
   }
 };
 
-const changeLiveDuration = (id, duration) => {
+const changeRangeAndBadgeValues = (id, duration, section) => {
   document.getElementById(id).innerHTML = duration;
+  if (section) {
+    checkAndUpdateBadgeValue(section);
+  } else {
+    ["breakfasts", "lunches", "evening", "snacks"].map((meal) =>
+      checkAndUpdateBadgeValue(meal)
+    );
+  }
+};
+
+const checkAndUpdateBadgeValue = (section) => {
+  const totalDaysValue = Number(document.getElementById(`trip-info`).value);
+  const veganRangeValue = Number(
+    document.getElementById(`vegan-${section}`).value
+  );
+  const vegetarianRangeValue = Number(
+    document.getElementById(`vegetarian-${section}`).value
+  );
+  const meatAndDairyRangeValue = Number(
+    document.getElementById(`m-and-d-${section}`).value
+  );
+  const badge = document.getElementById(`${section}-badge`);
+
+  const sectionTotal =
+    veganRangeValue + vegetarianRangeValue + meatAndDairyRangeValue;
+  const totalsMatch = Boolean(sectionTotal === totalDaysValue);
+  totalsMatch
+    ? (badge.className = "badge bg-success p-2 ms-2 fs-6")
+    : (badge.className = "badge bg-warning p-2 ms-2 fs-6");
+  badge.innerHTML = `${sectionTotal} / ${totalDaysValue}`;
 };
 
 const getAndCheckInputData = () => {

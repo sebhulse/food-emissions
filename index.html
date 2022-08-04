@@ -73,12 +73,16 @@
           step="1"
           value="0"
           id="trip-info"
-          oninput="changeLiveDuration('trip-info-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('trip-info-badge', this.value, null)"
         />
         <hr class="mb-5" />
         <div class="d-flex justify-content-between align-items-center">
           <h2>Breakfasts</h2>
-          <h2 class="badge bg-success p-2 ms-2 fs-6" id="breakfasts-badge">
+          <h2
+            class="badge bg-success p-2 ms-2 fs-6"
+            style="--bs-bg-opacity: 0.75"
+            id="breakfasts-badge"
+          >
             0 / 0
           </h2>
         </div>
@@ -102,7 +106,8 @@
           step="1"
           value="0"
           id="vegan-breakfasts"
-          oninput="changeLiveDuration('vegan-breakfasts-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegan-breakfasts-badge', this.value,
+        'breakfasts')"
         />
         <h6 class="fw-bold">Vegetarian</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -123,7 +128,7 @@
           step="1"
           value="0"
           id="vegetarian-breakfasts"
-          oninput="changeLiveDuration('vegetarian-breakfasts-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegetarian-breakfasts-badge', this.value, 'breakfasts')"
         />
         <h6 class="fw-bold">Meat & Dairy</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -144,12 +149,16 @@
           step="1"
           value="0"
           id="m-and-d-breakfasts"
-          oninput="changeLiveDuration('m-and-d-breakfasts-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('m-and-d-breakfasts-badge', this.value, 'breakfasts')"
         />
         <hr class="mb-5" />
         <div class="d-flex justify-content-between align-items-center">
           <h2>Lunches</h2>
-          <h2 class="badge bg-success p-2 ms-2 fs-6" id="lunches-badge">
+          <h2
+            class="badge bg-success p-2 ms-2 fs-6"
+            style="--bs-bg-opacity: 0.75"
+            id="lunches-badge"
+          >
             0 / 0
           </h2>
         </div>
@@ -173,7 +182,7 @@
           step="1"
           value="0"
           id="vegan-lunches"
-          oninput="changeLiveDuration('vegan-lunches-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegan-lunches-badge', this.value, 'lunches')"
         />
         <h6 class="fw-bold">Vegetarian</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -194,7 +203,7 @@
           step="1"
           value="0"
           id="vegetarian-lunches"
-          oninput="changeLiveDuration('vegetarian-lunches-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegetarian-lunches-badge', this.value, 'lunches')"
         />
         <h6 class="fw-bold">Meat & Dairy</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -215,13 +224,17 @@
           step="1"
           value="0"
           id="m-and-d-lunches"
-          oninput="changeLiveDuration('m-and-d-lunches-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('m-and-d-lunches-badge', this.value, 'lunches')"
         />
         <hr class="mb-5" />
 
         <div class="d-flex justify-content-between align-items-center">
           <h2>Evening Meals</h2>
-          <h2 class="badge bg-success p-2 ms-2 fs-6" id="evening-badge">
+          <h2
+            class="badge bg-success p-2 ms-2 fs-6"
+            style="--bs-bg-opacity: 0.75"
+            id="evening-badge"
+          >
             0 / 0
           </h2>
         </div>
@@ -245,7 +258,7 @@
           step="1"
           value="0"
           id="vegan-evening"
-          oninput="changeLiveDuration('vegan-evening-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegan-evening-badge', this.value, 'evening')"
         />
         <h6 class="fw-bold">Vegetarian</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -266,7 +279,7 @@
           step="1"
           value="0"
           id="vegetarian-evening"
-          oninput="changeLiveDuration('vegetarian-evening-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegetarian-evening-badge', this.value, 'evening')"
         />
         <h6 class="fw-bold">Meat & Dairy</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -287,13 +300,17 @@
           step="1"
           value="0"
           id="m-and-d-evening"
-          oninput="changeLiveDuration('m-and-d-evening-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('m-and-d-evening-badge', this.value, 'evening')"
         />
         <hr class="mb-5" />
 
         <div class="d-flex justify-content-between align-items-center">
           <h2>Everything Else</h2>
-          <h2 class="badge bg-success p-2 ms-2 fs-6" id="snacks-badge">
+          <h2
+            class="badge bg-success p-2 ms-2 fs-6"
+            style="--bs-bg-opacity: 0.75"
+            id="snacks-badge"
+          >
             0 / 0
           </h2>
         </div>
@@ -325,7 +342,7 @@
           step="1"
           value="0"
           id="vegan-snacks"
-          oninput="changeLiveDuration('vegan-snacks-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegan-snacks-badge', this.value, 'snacks')"
         />
         <h6 class="fw-bold">Vegetarian</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -346,7 +363,7 @@
           step="1"
           value="0"
           id="vegetarian-snacks"
-          oninput="changeLiveDuration('vegetarian-snacks-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('vegetarian-snacks-badge', this.value, 'snacks')"
         />
         <h6 class="fw-bold">Meat & Dairy</h6>
         <div class="d-flex justify-content-between align-items-end">
@@ -367,7 +384,7 @@
           step="1"
           value="0"
           id="m-and-d-snacks"
-          oninput="changeLiveDuration('m-and-d-snacks-badge', this.value)"
+          oninput="changeRangeAndBadgeValues('m-and-d-snacks-badge', this.value, 'snacks')"
         />
         <hr class="mb-5" />
 

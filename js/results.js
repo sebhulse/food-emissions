@@ -2,7 +2,9 @@ const results = () => {
   try {
     const data = displayEmissionsDataBreakdown();
     displayEmissionsTableData(data);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const displayEmissionsDataBreakdown = () => {
@@ -90,7 +92,26 @@ const displayEmissionsDataBreakdown = () => {
     "tripInformationPlaceholder"
   );
   insertElement(
-    `<p><strong>Total emissions</strong>: <strong>${totalEmissionsData.totalEmissions}</strong> kgCO2e</p>`,
+    `<tr>
+    <td>Total emissions</td>
+    <td><strong>${totalEmissionsData.totalEmissions}</strong> kgCO2e</td>
+  </tr>`,
+    "totalEmissionsPlaceholder"
+  );
+  insertElement(
+    `<tr>
+    <td>Total days</td>
+    <td><strong>${totalEmissionsData.totalDays}</strong> days</td>
+  </tr>`,
+    "totalEmissionsPlaceholder"
+  );
+  insertElement(
+    `<tr>
+    <td>Average daily emissions</td>
+    <td><strong>${(
+      totalEmissionsData.totalEmissions / totalEmissionsData.totalDays
+    ).toFixed(2)}</strong> kgCO2e</td>
+  </tr>`,
     "totalEmissionsPlaceholder"
   );
   if (
