@@ -23,28 +23,51 @@
     .slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       background: #212529;
       cursor: pointer;
     }
     .slider::-moz-range-thumb {
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       background: #212529;
       cursor: pointer;
     }
   </style>
-  <header>
-    <div class="text-center p-4 mt-5">
-      <h1 class="display-2 fw-bold">UK Food Emissions</h1>
-    </div>
-  </header>
   <body>
-    <div class="d-flex justify-content-center m-3">
-      <div class="col-9">
+    <div class="container-sm">
+      <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 border-bottom"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none display-1 text-nowrap"
+        >
+          <h1>UK Food Emissions</h1>
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li>
+            <a href="/guide.html" class="nav-link px-2 link-dark"
+              >What is this?</a
+            >
+          </li>
+          <li>
+            <a href="/data.html" class="nav-link px-2 link-dark">Data</a>
+          </li>
+          <li>
+            <a href="/contact.html" class="nav-link px-2 link-dark">Contact</a>
+          </li>
+        </ul>
+      </header>
+      <div class="m-2">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
+          </ol>
+        </nav>
         <h2>Trip Information</h2>
         <div class="d-flex flex-column block">
           <label class="mt-3"

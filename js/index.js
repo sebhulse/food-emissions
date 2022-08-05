@@ -42,7 +42,7 @@ const checkAndUpdateBadgeValue = (section) => {
   const sectionTotal =
     veganRangeValue + vegetarianRangeValue + meatAndDairyRangeValue;
   const totalsMatch = Boolean(sectionTotal === totalDaysValue);
-  if (totalsMatch) {
+  if (totalsMatch && totalDaysValue !== 0) {
     sectionBadge.className = "badge bg-success p-2 ms-2 fs-6";
     updateRangeBadges(section, true);
   } else if (totalDaysValue === 0) {
