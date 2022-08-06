@@ -1,4 +1,4 @@
-const DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/data";
+const DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/methodology";
 const DATA_AGGREGATION_TOOL = "foodemissions.uk";
 
 let htmlTableDataRows = "";
