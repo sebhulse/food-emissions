@@ -1,12 +1,29 @@
 const DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/methodology";
 const DATA_AGGREGATION_TOOL = "foodemissions.uk";
 
+let CREATED_ON = "";
 let htmlTableDataRows = "";
+let JSON_DATA = "";
 
 const results = () => {
   try {
     const data = displayEmissionsDataBreakdown();
     displayEmissionsTableData(data);
+    const calculatedEmissionsData = JSON.parse(
+      sessionStorage.getItem("calculatedEmissionsData")
+    );
+    const totalEmissionsData = JSON.parse(
+      sessionStorage.getItem("totalEmissionsData")
+    );
+    JSON_DATA = {
+      calculatedEmissionsData: calculatedEmissionsData,
+      totalEmissionsData: totalEmissionsData,
+      dataInformation: {
+        createdOn: CREATED_ON,
+        methodologyAndData: DATA_METHODOLOGY,
+        dataAggregationTool: DATA_AGGREGATION_TOOL,
+      },
+    };
   } catch (error) {
     console.error(error);
   }
@@ -81,11 +98,8 @@ const displayEmissionsDataBreakdown = () => {
         );
     }
   );
-  data.push(
-    new Date().toISOString().split("T")[0],
-    DATA_METHODOLOGY,
-    DATA_AGGREGATION_TOOL
-  );
+  CREATED_ON = new Date().toISOString().split("T")[0];
+  data.push(CREATED_ON, DATA_METHODOLOGY, DATA_AGGREGATION_TOOL);
   const tripStartDateString = new Date(
     totalEmissionsData.tripStart
   ).toDateString();
@@ -121,9 +135,16 @@ const displayEmissionsDataBreakdown = () => {
   </tr>`,
     "totalEmissionsPlaceholder"
   );
+  insertElement(
+    `<tr>
+    <td>Methodology and Data</td>
+    <td>${DATA_METHODOLOGY}</td>
+  </tr>`,
+    "totalEmissionsPlaceholder"
+  );
   if (
     totalEmissionsData.totalEmissions ===
-    totalEmissionsData.potentialTotalVeganEmissions
+    totalEmissionsData.potentialTotalEmissionsIfVegan
   ) {
     insertElement(
       `<div class="alert alert-success mt-3" role="alert">
@@ -134,7 +155,7 @@ const displayEmissionsDataBreakdown = () => {
   } else {
     const emissionsReductionPercent = Math.round(
       ((totalEmissionsData.totalEmissions -
-        totalEmissionsData.potentialTotalVeganEmissions) /
+        totalEmissionsData.potentialTotalEmissionsIfVegan) /
         totalEmissionsData.totalEmissions) *
         100
     );
@@ -158,7 +179,7 @@ const displayEmissionsTableData = (data) => {
 
 const insertEmissionsData = (section, number, diet, emissions) => {
   const sectionPlaceholder = document.getElementById(`${section}Placeholder`);
-  sectionPlaceholder.innerHTML += `<tr><td>${number}</td><td>${diet}</td><td>${emissions}</td></tr>`;
+  sectionPlaceholder.innerHTML += `<tr><td>${number}</td><td>${diet}</td><td><strong>${emissions}</strong></td></tr>`;
 };
 
 const insertElement = (message, placeholder) => {
@@ -202,8 +223,19 @@ const setButtonStyle = (buttonText, isSuccess, elementId) => {
   }, 2000);
 };
 
-const downloadJsonEmissionsData = () => {};
+const downloadJsonEmissionsData = () => {
+  let dataStr = JSON.stringify(JSON_DATA, null, 2);
+  let dataUri =
+    "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+  let exportFileDefaultName = `food_emissions_${CREATED_ON}.json`;
+  let linkElement = document.createElement("a");
+  linkElement.setAttribute("href", dataUri);
+  linkElement.setAttribute("download", exportFileDefaultName);
+  linkElement.click();
+};
 
-const downloadCsvEmissionsData = () => {};
+const downloadCsvEmissionsData = () => {
+  const headings = [];
+};
 
 results();

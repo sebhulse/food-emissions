@@ -263,7 +263,7 @@ const calculateEmissionsData = (valuesKey) => {
     tripStart: values.tripStart,
     totalDays: values.totalDays,
     totalEmissions: +totalEmissions.toFixed(2),
-    potentialTotalVeganEmissions: +(
+    potentialTotalEmissionsIfVegan: +(
       values.totalDays * VEGAN_EMISSIONS_DAILY_KG
     ).toFixed(2),
   };
