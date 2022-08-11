@@ -270,9 +270,9 @@ const setButtonStyle = (buttonText, isSuccess, elementId) => {
 };
 
 const downloadJsonEmissionsData = () => {
-  let dataStr = JSON.stringify(JSON_DATA, null, 2);
+  let json = JSON.stringify(JSON_DATA, null, 2);
   let dataUri =
-    "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+    "data:application/json;charset=utf-8," + encodeURIComponent(json);
   let exportFileDefaultName = `food_emissions_${CREATED_ON}.json`;
   let linkElement = document.createElement("a");
   linkElement.setAttribute("href", dataUri);
@@ -282,9 +282,24 @@ const downloadJsonEmissionsData = () => {
 
 const downloadAllCSVEmissionsData = () => {
   let csv = [HEADINGS, ALL_DATA_FLAT];
-  let csvContent =
-    "data:text/csv;charset=utf-8," + csv.map((e) => e.join(",")).join("\n");
-  console.log(csvContent);
+  let dataUri =
+    "data:text/csv;charset=utf-8," +
+    encodeURIComponent(csv.map((e) => e.join(",")).join("\n"));
+  let exportFileDefaultName = `food_emissions_${CREATED_ON}.csv`;
+  let linkElement = document.createElement("a");
+  linkElement.setAttribute("href", dataUri);
+  linkElement.setAttribute("download", exportFileDefaultName);
+  linkElement.click();
+};
+
+const downloadCSVEmissionsDataRow = () => {
+  let dataUri =
+    "data:text/csv;charset=utf-8," + encodeURIComponent(ALL_DATA_FLAT);
+  let exportFileDefaultName = `food_emissions_data_row_${CREATED_ON}.csv`;
+  let linkElement = document.createElement("a");
+  linkElement.setAttribute("href", dataUri);
+  linkElement.setAttribute("download", exportFileDefaultName);
+  linkElement.click();
 };
 
 results();
