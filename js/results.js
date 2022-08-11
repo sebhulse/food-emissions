@@ -53,7 +53,7 @@ const TRANSPORT_EMISSIONS = [
     description:
       "This is for a bike traveling at the same speed with five stops per mile and 20m of climbing. This includes 50 gCO2e/mile for the embodied energy of the bike (this could be as low as 10 gCOe/mile depending on use).",
     source:
-      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 28-29",
+      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 28-29]",
   },
   {
     mode: "Bus",
@@ -249,10 +249,10 @@ const displayEmissionsDataBreakdown = () => {
       <strong>Thank you</strong> for entering your data. By choosing Vegan 🌱 next time, you could reduce your emissions by <strong>${emissionsReductionPercent(
         totalEmissionsData.totalEmissions,
         totalEmissionsData.potentialTotalEmissionsIfVegan
-      )}%</strong> - the equivalent of ${randomEquivalentEmissionsReduction(
+      )}%</strong> - the equivalent of travelling ${randomEquivalentEmissionsReduction(
         totalEmissionsData.totalEmissions,
         totalEmissionsData.potentialTotalEmissionsIfVegan
-      )}.
+      )}
     </div>`,
       "infoPlaceholder"
     );
@@ -355,22 +355,28 @@ const randomEquivalentEmissionsReduction = (
   const emissionsDifference = Number(
     totalEmissions - potentialTotalEmissionsIfVegan
   ).toFixed(2);
-  console.log(emissionsDifference);
   let emissionsStatement = `${Math.round(
     emissionsDifference / data.emissions
-  )} miles by ${data.mode}! `;
-  return `${emissionsStatement}<button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#methodologyModal">How is this calculated?</button>
+  )} miles by ${data.mode}`;
+  return `${emissionsStatement}! <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#methodologyModal">Methodology</button>
   <div class="modal fade" id="methodologyModal" tabindex="-1" aria-labelledby="methodologyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="methodologyModalLabel">${data.mode}</h5>
+          <h5 class="modal-title" id="methodologyModalLabel">Methodology</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <h5>Data</h5>
+          <p>Transportation: ${data.mode}</p>
           <p>Emissions: ${data.emissions} ${data.unit}</p>
           <p>Description: ${data.description}</p>
           <p>Source: ${data.source}</p>
+          <h5>Calculation</h5>
+          <p>Total Trip Emissions: ${totalEmissions} kgCO2e</p>
+          <p>Potential Trip Emissions if Vegan: ${potentialTotalEmissionsIfVegan} kgCO2e</p>
+          <p>Emissions Difference: ${totalEmissions} - ${potentialTotalEmissionsIfVegan} = ${emissionsDifference} kgCO2e</p>
+          <p>Miles travelled: ${emissionsDifference} / ${data.emissions} = ${emissionsStatement}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
