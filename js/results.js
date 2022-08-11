@@ -1,14 +1,60 @@
 const DATA_METHODOLOGY = "Methodology V1 foodemissions.uk/methodology";
 const DATA_AGGREGATION_TOOL = "foodemissions.uk";
+const HEADINGS = [
+  "Trip Information-Start Date (ISO)",
+  "Trip Information-Total Days",
+  "Trip Information-Total Emissions (kgCO2e)",
+
+  "Breakfast-Vegan-Number",
+  "Breakfast-Vegan-Emissions (kgCO2e)",
+  "Breakfast-Vegetarian-Number",
+  "Breakfast-Vegetarian-Emissions (kgCO2e)",
+  "Breakfast-Meat and Dairy-Number",
+  "Breakfast-Meat and Dairy-Emissions (kgCO2e)",
+  "Breakfast-Total Breakfast-Number",
+  "Breakfast-Total Breakfast-Emissions (kgCO2e)",
+
+  "Lunch-Vegan-Number",
+  "Lunch-Vegan-Emissions (kgCO2e)",
+  "Lunch-Vegetarian-Number",
+  "Lunch-Vegetarian-Emissions (kgCO2e)",
+  "Lunch-Meat and Dairy-Number",
+  "Lunch-Meat and Dairy-Emissions (kgCO2e)",
+  "Lunch-Total Lunch-Number",
+  "Lunch-Total Lunch-Emissions (kgCO2e)",
+
+  "Evening Meal-Vegan-Number",
+  "Evening Meal-Vegan-Emissions (kgCO2e)",
+  "Evening Meal-Vegetarian-Number",
+  "Evening Meal-Vegetarian-Emissions (kgCO2e)",
+  "Evening Meal-Meat and Dairy-Number",
+  "Evening Meal-Meat and Dairy-Emissions (kgCO2e)",
+  "Evening Meal-Total Evening Meal-Number",
+  "Evening Meal-Total Evening Meal-Emissions (kgCO2e)",
+
+  "Everything Else-Vegan-Number",
+  "Everything Else-Vegan-Emissions (kgCO2e)",
+  "Everything Else-Vegetarian-Number",
+  "Everything Else-Vegetarian-Emissions (kgCO2e)",
+  "Everything Else-Meat and Dairy-Number",
+  "Everything Else-Meat and Dairy-Emissions (kgCO2e)",
+  "Everything Else-Total Everything Else-Number",
+  "Everything Else-Total Everything Else-Emissions (kgCO2e)",
+
+  "Data Information-Created On (ISO)",
+  "Data Information-Methodology and Data",
+  "Data Information-Data Aggregation Tool",
+];
 
 let CREATED_ON = "";
 let htmlTableDataRows = "";
 let JSON_DATA = "";
+let ALL_DATA_FLAT = [];
 
 const results = () => {
   try {
-    const data = displayEmissionsDataBreakdown();
-    displayEmissionsTableData(data);
+    ALL_DATA_FLAT = displayEmissionsDataBreakdown();
+    displayEmissionsTableData();
     const calculatedEmissionsData = JSON.parse(
       sessionStorage.getItem("calculatedEmissionsData")
     );
@@ -169,9 +215,9 @@ const displayEmissionsDataBreakdown = () => {
   return data;
 };
 
-const displayEmissionsTableData = (data) => {
+const displayEmissionsTableData = () => {
   const tableBodyPlaceholder = document.getElementById(`tableBodyPlaceholder`);
-  data.map((el) => {
+  ALL_DATA_FLAT.map((el) => {
     tableBodyPlaceholder.innerHTML += `<td>${el}</td>`;
     htmlTableDataRows += `<td>${el}</td>`;
   });
@@ -234,8 +280,11 @@ const downloadJsonEmissionsData = () => {
   linkElement.click();
 };
 
-const downloadCsvEmissionsData = () => {
-  const headings = [];
+const downloadAllCSVEmissionsData = () => {
+  let csv = [HEADINGS, ALL_DATA_FLAT];
+  let csvContent =
+    "data:text/csv;charset=utf-8," + csv.map((e) => e.join(",")).join("\n");
+  console.log(csvContent);
 };
 
 results();
