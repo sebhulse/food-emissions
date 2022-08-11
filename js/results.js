@@ -45,9 +45,54 @@ const HEADINGS = [
   "Data Information-Methodology and Data",
   "Data Information-Data Aggregation Tool",
 ];
+const TRANSPORT_EMISSIONS = [
+  {
+    mode: "Electric Bike",
+    emissions: 0.055,
+    unit: "kgCO2e/mile",
+    description:
+      "This is for a bike traveling at the same speed with five stops per mile and 20m of climbing. This includes 50 gCO2e/mile for the embodied energy of the bike (this could be as low as 10 gCOe/mile depending on use).",
+    source:
+      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 28-29",
+  },
+  {
+    mode: "Bus",
+    emissions: 0.046,
+    unit: "kgCO2e/mile",
+    description: "This is for a half-full London Routemaster (Diesel Hybrid)",
+    source:
+      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 30-31]",
+  },
+  {
+    mode: "Bicycle",
+    emissions: 0.09,
+    unit: "kgCO2e/mile",
+    description:
+      "This is for a cyclist powered by bananas. This includes 50 gCO2e/mile for the embodied energy of the bike (this could be as low as 10 gCOe/mile depending on use).",
+    source:
+      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 32-33]",
+  },
+  {
+    mode: "Train",
+    emissions: 0.08,
+    unit: "kgCO2e/mile",
+    description: "This is for an intercity standard class rail service.",
+    source:
+      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 33-35]",
+  },
+  {
+    mode: "Electric Car",
+    emissions: 0.18,
+    unit: "kgCO2e/mile",
+    description:
+      "This is for a mid-sized five-door electric car. This source is generally higher than others because it includes manufacture and maintenance of the vehicle.",
+    source:
+      "'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p. 62-63]",
+  },
+];
 
 let CREATED_ON = "";
-let htmlTableDataRows = "";
+let HTML_TABLE_DATA_ROWS = "";
 let JSON_DATA = "";
 let ALL_DATA_FLAT = [];
 
@@ -199,15 +244,15 @@ const displayEmissionsDataBreakdown = () => {
       "infoPlaceholder"
     );
   } else {
-    const emissionsReductionPercent = Math.round(
-      ((totalEmissionsData.totalEmissions -
-        totalEmissionsData.potentialTotalEmissionsIfVegan) /
-        totalEmissionsData.totalEmissions) *
-        100
-    );
     insertElement(
       `<div class="alert alert-info mt-3" role="alert">
-      <strong>Thank you</strong> for entering your data. By choosing Vegan 🌱 next time, you could reduce your emissions by <strong>${emissionsReductionPercent}%</strong>!
+      <strong>Thank you</strong> for entering your data. By choosing Vegan 🌱 next time, you could reduce your emissions by <strong>${emissionsReductionPercent(
+        totalEmissionsData.totalEmissions,
+        totalEmissionsData.potentialTotalEmissionsIfVegan
+      )}%</strong> - the equivalent of ${randomEquivalentEmissionsReduction(
+        totalEmissionsData.totalEmissions,
+        totalEmissionsData.potentialTotalEmissionsIfVegan
+      )}.
     </div>`,
       "infoPlaceholder"
     );
@@ -219,7 +264,7 @@ const displayEmissionsTableData = () => {
   const tableBodyPlaceholder = document.getElementById(`tableBodyPlaceholder`);
   ALL_DATA_FLAT.map((el) => {
     tableBodyPlaceholder.innerHTML += `<td>${el}</td>`;
-    htmlTableDataRows += `<td>${el}</td>`;
+    HTML_TABLE_DATA_ROWS += `<td>${el}</td>`;
   });
 };
 
@@ -240,7 +285,7 @@ const copyTableData = (isEntireTable, elementId, buttonId) => {
     blob = new Blob([tableElement.outerHTML], { type: "text/html" });
   } else {
     blob = new Blob(
-      [`<table><tbody><tr>${htmlTableDataRows}</tr></tbody></table>`],
+      [`<table><tbody><tr>${HTML_TABLE_DATA_ROWS}</tr></tbody></table>`],
       { type: "text/html" }
     );
   }
@@ -290,6 +335,49 @@ const downloadCSVEmissionsData = () => {
   linkElement.setAttribute("href", dataUri);
   linkElement.setAttribute("download", exportFileDefaultName);
   linkElement.click();
+};
+
+const emissionsReductionPercent = (
+  totalEmissions,
+  potentialTotalEmissionsIfVegan
+) => {
+  return Math.round(
+    ((totalEmissions - potentialTotalEmissionsIfVegan) / totalEmissions) * 100
+  );
+};
+
+const randomEquivalentEmissionsReduction = (
+  totalEmissions,
+  potentialTotalEmissionsIfVegan
+) => {
+  const dataLength = TRANSPORT_EMISSIONS.length;
+  const data = TRANSPORT_EMISSIONS[Math.floor(Math.random() * dataLength)];
+  const emissionsDifference = Number(
+    totalEmissions - potentialTotalEmissionsIfVegan
+  ).toFixed(2);
+  console.log(emissionsDifference);
+  let emissionsStatement = `${Math.round(
+    emissionsDifference / data.emissions
+  )} miles by ${data.mode}! `;
+  return `${emissionsStatement}<button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#methodologyModal">How is this calculated?</button>
+  <div class="modal fade" id="methodologyModal" tabindex="-1" aria-labelledby="methodologyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="methodologyModalLabel">${data.mode}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Emissions: ${data.emissions} ${data.unit}</p>
+          <p>Description: ${data.description}</p>
+          <p>Source: ${data.source}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
 };
 
 results();
