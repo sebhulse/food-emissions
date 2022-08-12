@@ -358,7 +358,7 @@ const randomEquivalentEmissionsReduction = (
   let emissionsStatement = `${Math.round(
     emissionsDifference / data.emissions
   )} miles by ${data.mode}`;
-  return `${emissionsStatement}! <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#methodologyModal">Methodology</button>
+  return `${emissionsStatement}! <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#methodologyModal">Calculation</button>
   <div class="modal fade" id="methodologyModal" tabindex="-1" aria-labelledby="methodologyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
