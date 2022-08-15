@@ -219,15 +219,6 @@ const displayEmissionsDataBreakdown = () => {
   );
   insertElement(
     `<tr>
-    <td>Average daily emissions</td>
-    <td><strong>${(
-      totalEmissionsData.totalEmissions / totalEmissionsData.totalDays
-    ).toFixed(2)}</strong> kgCO2e</td>
-  </tr>`,
-    "totalEmissionsPlaceholder"
-  );
-  insertElement(
-    `<tr>
     <td>Methodology and Data</td>
     <td>${DATA_METHODOLOGY}</td>
   </tr>`,

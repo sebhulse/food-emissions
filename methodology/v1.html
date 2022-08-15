@@ -13,38 +13,44 @@
   <body>
     <div class="container-sm">
       <div class="m-3">
-      <header
-        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 border-bottom"
-      >
-        <a
-          href="/"
-          class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none display-1 text-nowrap"
+        <header
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 border-bottom"
         >
-          <h1>UK Food Emissions</h1>
-        </a>
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li>
-            <a href="/guide.html" class="nav-link px-2 link-dark fs-5"
-              >What is this?</a
-            >
-          </li>
-          <li>
-            <a href="/methodology.html" class="nav-link px-2 link-dark fs-5"
-              >Methodology</a
-            >
-          </li>
-          <li>
-            <a href="/contact.html" class="nav-link px-2 link-dark fs-5"
-              >Contact</a
-            >
-          </li>
-        </ul>
-      </header>
+          <a
+            href="/"
+            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none display-1 text-nowrap"
+          >
+            <h1>UK Food Emissions</h1>
+          </a>
+          <ul
+            class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li>
+              <a href="/guide.html" class="nav-link px-2 link-dark fs-5"
+                >What is this?</a
+              >
+            </li>
+            <li>
+              <a href="/methodology.html" class="nav-link px-2 link-dark fs-5"
+                >Methodology</a
+              >
+            </li>
+            <li>
+              <a href="/contact.html" class="nav-link px-2 link-dark fs-5"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </header>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/methodology.html">Methodology</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Methodology V1</li>
+            <li class="breadcrumb-item">
+              <a href="/methodology.html">Methodology</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Methodology V1
+            </li>
           </ol>
         </nav>
         <h2 class="mb-4">Methodology V1</h2>
@@ -52,91 +58,104 @@
         <p><em>Updated 15 Aug 2022</em></p>
         <p>Intro...</p>
         <h2>Data</h2>
-        <p>Table 1 shows the average carbon impact of Vegan, Vegetarian, and Meat & Dairy diets 
-          which has been extrapolated from the 'week's food shoppping' data in 'How Bad are 
-          Bananas?' [1]. Additional data for 'No red meat' diets and consideration for food waste 
-          and food miles are included in [1], but are omitted here to reduce user decision fatigue and complexity.</p>
-        <table class="table table-bordered border-secondary text-center">
-          <caption>Table 1 - Weekly food carbon impacts of different diets, with extrapolated 
-            annual and daily data [1].</caption>
-          <thead>
-            <th>Diet</th>
-            <th>Weekly Carbon Impact (kgCO2e)</th>
-            <th>Annual Carbon Impact (kgCO2e)</th>
-            <th>Daily Carbon Impact (kgCO2e)</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Vegan, average
-              </td>
-              <td>36</td>
-              <td>1872</td>
-              <td>5.13</td>
-            </tr>
-            <tr>
-              <td>
-                Vegetarian, average
-              </td>
-              <td>46</td>
-              <td>2392</td>
-              <td>6.55</td>
-            </tr>
-            <tr>
-              <td>
-                Meat & Dairy, average
-              </td>
-              <td>61</td>
-              <td>3172</td>
-              <td>8.69</td>
-            </tr>
-          </tbody>
-        </table>
         <p>
-
+          Table 1 shows the average carbon impact of Vegan, Vegetarian, and Meat
+          & Dairy diets which has been extrapolated from the 'week's food
+          shoppping' data in 'How Bad are Bananas?' [1]. Additional data for 'No
+          red meat' diets and consideration for food waste and food miles are
+          included in [1], but are omitted here to reduce user decision fatigue
+          and complexity.
         </p>
-        <table class="table table-bordered border-secondary text-center">
-          <caption>Table 2 - Proportion of daily calories for each meal [2].</caption>
-          <thead>
-            <th>Meal</th>
-            <th>Proportion of Daily Calories</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Breakfast
-              </td>
-              <td>20%</td>
-            </tr>
-            <tr>
-              <td>
-                Lunch
-              </td>
-              <td>30%</td>
-            </tr>
-            <tr>
-              <td>
-                Evening Meal
-              </td>
-              <td>30%</td>
-            </tr>
-            <tr>
-              <td>
-                Everything Else (e.g. food and drink snacks)
-              </td>
-              <td>20%</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="overflow-auto">
+          <table class="table table-bordered border-secondary text-center">
+            <caption>
+              Table 1 - Weekly food carbon impacts of different diets, with
+              extrapolated annual and daily data [1].
+            </caption>
+            <thead>
+              <tr>
+                <th>Diet</th>
+                <th>Weekly Carbon Impact (kgCO2e)</th>
+                <th>Annual Carbon Impact (kgCO2e)</th>
+                <th>Daily Carbon Impact (kgCO2e)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vegan, average</td>
+                <td>36</td>
+                <td>1872</td>
+                <td>5.13</td>
+              </tr>
+              <tr>
+                <td>Vegetarian, average</td>
+                <td>46</td>
+                <td>2392</td>
+                <td>6.55</td>
+              </tr>
+              <tr>
+                <td>Meat & Dairy, average</td>
+                <td>61</td>
+                <td>3172</td>
+                <td>8.69</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p></p>
+        <div class="overflow-auto">
+          <table class="table table-bordered border-secondary text-center">
+            <caption>
+              Table 2 - Proportion of daily calories for each meal [2].
+            </caption>
+            <thead>
+              <tr>
+                <th>Meal</th>
+                <th>Proportion of Daily Calories</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Breakfast</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>Lunch</td>
+                <td>30%</td>
+              </tr>
+              <tr>
+                <td>Evening Meal</td>
+                <td>30%</td>
+              </tr>
+              <tr>
+                <td>Everything Else (e.g. food and drink snacks)</td>
+                <td>20%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>Approach</h2>
         <h2>Assumptions</h2>
         <h2>Limitations</h2>
         <h2>References</h2>
-        <p>[1] <a href="https://howbadarebananas.com/">'How bad are bananas?', Mike 
-          Berners-Lee, Profile Books, 2020 [p. 113-114]</a></p>
-        <p>[2] <a href="https://www.gov.uk/government/publications/healthier-and-more-sustainable-catering-a-toolkit-for-serving-food-to-adults">
-          'Healthier and more sustainable catering: Nutrition principles', Public 
-          Health England, Crown [section 6.3]</a></p>
+        <p>
+          [1]
+          <a href="https://howbadarebananas.com/"
+            >'How bad are bananas?', Mike Berners-Lee, Profile Books, 2020 [p.
+            113-114]</a
+          >
+        </p>
+        <p>
+          [2]
+          <a
+            href="https://www.gov.uk/government/publications/healthier-and-more-sustainable-catering-a-toolkit-for-serving-food-to-adults"
+          >
+            'Healthier and more sustainable catering: Nutrition principles',
+            Public Health England, Crown [section 6.3]</a
+          >
+        </p>
+      </div>
     </div>
   </body>
 </html>
