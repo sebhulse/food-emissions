@@ -55,7 +55,7 @@
         </nav>
         <h2 class="mb-4">Methodology V1</h2>
         <p class="mb-0"><em>Published 13 Aug 2022</em></p>
-        <p><em>Updated 15 Aug 2022</em></p>
+        <p><em>Updated 16 Aug 2022</em></p>
         <p>Intro...</p>
         <h2>Data</h2>
         <p>
@@ -70,7 +70,7 @@
           <table class="table table-bordered border-secondary text-center">
             <caption>
               Table 1 - Weekly food carbon impacts of different diets, with
-              extrapolated annual and daily data [1].
+              extrapolated annual and daily data [1]
             </caption>
             <thead>
               <tr>
@@ -102,16 +102,19 @@
             </tbody>
           </table>
         </div>
-        <p></p>
+        <p>
+          Table 2 shows estimated daily proportion of food and drink intake per
+          meal [2].
+        </p>
         <div class="overflow-auto">
           <table class="table table-bordered border-secondary text-center">
             <caption>
-              Table 2 - Proportion of daily calories for each meal [2].
+              Table 2 - Proportion of daily calories for each meal [2]
             </caption>
             <thead>
               <tr>
                 <th>Meal</th>
-                <th>Proportion of Daily Calories</th>
+                <th>Proportion of Daily Intake</th>
               </tr>
             </thead>
             <tbody>
@@ -136,8 +139,52 @@
         </div>
 
         <h2>Approach</h2>
+        <p>
+          Rather than requiring people to provide a full itemised breakdown of
+          all foods consumed and their resultant carbon impact (e.g. [3, 4]); a
+          simpler approach is taken. Here, people need only provide information
+          on which diet was followed for each meal on each day. This reduces the
+          time and resources required to submit this data, improving the chances
+          of representative data submission.
+        </p>
+        <h2>Calculation</h2>
+        <p>
+          To calculate carbon emissions for each meal, the calculation used is:
+        </p>
+        <p>
+          <code
+            >Carbon emissions (kgCO2e) = Proportion of meal daily intake * Diet
+            emissions per day</code
+          >
+        </p>
+        <p>
+          To calculate the carbon emissions for each day, the sum of all meal
+          carbon emissions is taken. This is possible because the tool restricts
+          user input to allow only one breakfast, lunch, evening meal and
+          'everything else' per day.
+        </p>
+        <p>
+          For example, if someone were to take a 2 day business trip, they may
+          choose to eat 2 vegan breakfasts, 2 vegetarian lunches, 1 meat & dairy
+          evening meal, 1 vegetarian evening meal, and 2 vegetarian 'everything
+          else'.
+        </p>
         <h2>Assumptions</h2>
+        <p>Structure breakfast, lunch, evening meal...</p>
+        <p>Individual consumption paid for by business</p>
         <h2>Limitations</h2>
+        <p>
+          Requires individuals not following the structure to document their
+          meals 'representatively' - may not reflect real-world consumption.
+        </p>
+        <p>
+          Relies on individuals to record their consumption, time or resource
+          constraints may limit data collection.
+        </p>
+        <p>
+          Not suitable for individual meals - requires users to enter minimum of
+          one day of eating.
+        </p>
         <h2>References</h2>
         <p>
           [1]
