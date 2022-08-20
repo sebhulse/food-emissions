@@ -2,13 +2,13 @@
 
 ## What?
 
-**What is this?** This website enables concious businesses and people to measure their food & drink emissions.
+**What is this?** This website enables conscious businesses and people to measure their food & drink emissions.
 
 Calculating itemised food and drink emissions can be challenging and inefficient [1][2]. This tool takes a different approach by using aggregated data, standardising the process, and empowering people to quickly and conveniently record their emissions. The details can be found in the Methodology section.
 
 ## Who?
 
-**Who is this for?** Environmentally concious business employees and individuals wanting to measure and reduce their food and drink emissions.
+**Who is this for?** Environmentally conscious business employees and individuals wanting to measure and reduce their food and drink emissions.
 
 ## Why?
 
